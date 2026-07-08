@@ -1,91 +1,86 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowRight, Code, Layout, Smartphone } from 'lucide-react';
+import { Github, Linkedin, Mail, Download, ArrowRight, User } from 'lucide-react';
+import Button from './Button';
+import IconButton from './IconButton';
+
 
 const Hero = () => {
   return (
-    <section id="home" className="min-h-screen flex items-center justify-center relative overflow-hidden">
-      {/* Background Blobs */}
-      <div className="absolute top-[-10%] right-[-10%] w-[500px] h-[500px] bg-accent-color opacity-[0.05] blur-[120px] rounded-full" />
-      <div className="absolute bottom-[-10%] left-[-10%] w-[400px] h-[400px] bg-accent-color opacity-[0.05] blur-[100px] rounded-full" />
+    <section id="home" className="flex flex-col items-center justify-center relative overflow-hidden pt-32 pb-16">
+      
+      {/* Background Accents */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-accent opacity-5 blur-[120px] rounded-full z-0 pointer-events-none" />
+      
+      <div className="container px-6 flex flex-col items-center justify-center gap-10 text-center relative z-10 min-h-[70vh]">
+        
+        {/* Profile Photo Placeholder */}
+        <motion.div
+          initial={{ opacity: 0, scale: 0.9 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5 }}
+        >
+          <div className="w-32 h-32 md:w-40 md:h-40 rounded-full border-4 border-white shadow-xl bg-bg-primary flex items-center justify-center overflow-hidden mx-auto">
+            {/* If you add an image later, put it here instead of the User icon */}
+            <User size={64} className="text-body/30" />
+          </div>
+        </motion.div>
 
-      <div className="container px-6 flex flex-col items-center text-center">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.5 }}
-          className="mb-6 px-4 py-2 glass rounded-full flex items-center gap-2 text-sm font-medium text-accent-color"
-        >
-          <span className="relative flex h-2 w-2">
-            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-accent-color opacity-75"></span>
-            <span className="relative inline-flex rounded-full h-2 w-2 bg-accent-color"></span>
-          </span>
-          Available for new opportunities
-        </motion.div>
-
-        <motion.h1
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.1 }}
-          className="text-5xl md:text-7xl font-extrabold mb-6 leading-tight"
+          className="flex flex-col gap-2"
         >
-          Hi, I'm <span className="gradient-text">Kervin</span> <br />
-          Crafting <span className="text-accent-color">Digital Experiences</span>
-        </motion.h1>
+          <h1>
+            A.Granahppu Kervin Prasanna
+          </h1>
+          <h3>
+            Software Developer
+          </h3>
+        </motion.div>
 
         <motion.p
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.2 }}
-          className="text-text-secondary text-lg md:text-xl max-w-2xl mb-10"
+          className="text-body text-lg md:text-xl font-medium max-w-2xl leading-relaxed"
         >
-          A passionate Frontend Developer specializing in building high-performance, 
-          visually stunning, and user-centric web applications.
+          I build exceptional digital experiences. Specializing in crafting clean, responsive, and user-centric web and mobile interfaces.
         </motion.p>
 
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.5, delay: 0.3 }}
-          className="flex flex-col sm:flex-row gap-4"
+          className="flex flex-col sm:flex-row gap-6 w-full sm:w-auto justify-center"
         >
-          <a href="#projects" className="btn-primary">
-            View My Work <ArrowRight size={20} />
-          </a>
-          <a href="#contact" className="btn-outline">
-            Let's Talk
-          </a>
+          <Button href="#projects" variant="primary">
+            View Projects <ArrowRight size={20} />
+          </Button>
+          <Button href="#" variant="outline">
+            Download Resume <Download size={20} />
+          </Button>
         </motion.div>
 
-        {/* Stats / Skills Quick View */}
+        {/* Social Icons */}
         <motion.div
-          initial={{ opacity: 0, y: 40 }}
+          initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-20 grid grid-cols-1 md:grid-cols-3 gap-8 w-full max-w-3xl"
+          transition={{ duration: 0.5, delay: 0.4 }}
+          className="flex gap-6 items-center justify-center mt-2"
         >
-          <div className="flex flex-col items-center gap-3 p-6 glass hover:border-accent-color transition-colors group">
-            <div className="p-3 bg-white/5 rounded-2xl group-hover:scale-110 transition-transform">
-              <Code className="text-accent-color" />
-            </div>
-            <h3 className="font-semibold text-lg">Clean Code</h3>
-            <p className="text-text-secondary text-sm">Writing maintainable and scalable frontend architectures.</p>
-          </div>
-          <div className="flex flex-col items-center gap-3 p-6 glass hover:border-accent-color transition-colors group">
-            <div className="p-3 bg-white/5 rounded-2xl group-hover:scale-110 transition-transform">
-              <Layout className="text-accent-color" />
-            </div>
-            <h3 className="font-semibold text-lg">Modern UI</h3>
-            <p className="text-text-secondary text-sm">Specialized in responsive and interactive designs.</p>
-          </div>
-          <div className="flex flex-col items-center gap-3 p-6 glass hover:border-accent-color transition-colors group">
-            <div className="p-3 bg-white/5 rounded-2xl group-hover:scale-110 transition-transform">
-              <Smartphone className="text-accent-color" />
-            </div>
-            <h3 className="font-semibold text-lg">Responsive</h3>
-            <p className="text-text-secondary text-sm">Perfectly optimized for every screen size.</p>
-          </div>
+          <IconButton href="https://github.com/kervinprasanna" target="_blank" rel="noreferrer">
+            <Github size={22} />
+          </IconButton>
+          <IconButton href="https://linkedin.com/in/kervinprasanna" target="_blank" rel="noreferrer">
+            <Linkedin size={22} />
+          </IconButton>
+          <IconButton href="mailto:kervinprasanna08@gmail.com">
+            <Mail size={22} />
+          </IconButton>
         </motion.div>
+        
       </div>
     </section>
   );

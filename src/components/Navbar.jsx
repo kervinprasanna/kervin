@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Menu, X, Github, Linkedin, Mail } from 'lucide-react';
+import { Menu, X, Download } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 const Navbar = () => {
@@ -15,6 +15,7 @@ const Navbar = () => {
   }, []);
 
   const navLinks = [
+    { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
@@ -23,18 +24,13 @@ const Navbar = () => {
   ];
 
   return (
-    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'py-4 bg-black/50 backdrop-blur-md border-b border-white/10' : 'py-6 bg-transparent'}`}>
+    <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled ? 'py-4 bg-white/80 backdrop-blur-md border-b border-border-soft shadow-sm' : 'py-6 bg-transparent'}`}>
       <div className="container px-6 mx-auto flex items-center justify-between">
-        <motion.div 
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          className="text-2xl font-bold gradient-text"
-        >
-          &lt;Kervin /&gt;
-        </motion.div>
+        
+       
 
-        {/* Desktop Menu */}
-        <div className="hidden md:flex items-center gap-8">
+        {/* Center: Navigation Links */}
+        <div className="hidden md:flex items-center justify-center gap-8 flex-1">
           {navLinks.map((link, i) => (
             <motion.a
               key={link.name}
@@ -42,19 +38,27 @@ const Navbar = () => {
               initial={{ opacity: 0, y: -10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.1 }}
-              className="text-sm font-medium text-text-secondary hover:text-white transition-colors"
+              className="text-sm font-semibold text-body hover:text-primary transition-colors"
             >
               {link.name}
             </motion.a>
           ))}
-          <div className="flex items-center gap-4 ml-4 border-l border-white/10 pl-8">
-            <a href="https://github.com" target="_blank" rel="noreferrer" className="text-text-secondary hover:text-white"><Github size={20} /></a>
-            <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="text-text-secondary hover:text-white"><Linkedin size={20} /></a>
-          </div>
+        </div>
+
+        {/* Right: Resume Button */}
+        <div className="hidden md:flex items-center justify-end flex-1">
+          <motion.a 
+            href="#"
+            initial={{ opacity: 0, x: 20 }}
+            animate={{ opacity: 1, x: 0 }}
+            className="btn-primary py-2.5 px-5 rounded-lg text-sm"
+          >
+            Resume <Download size={16} />
+          </motion.a>
         </div>
 
         {/* Mobile Toggle */}
-        <button className="md:hidden text-white" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+        <button className="md:hidden text-heading" onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
           {isMobileMenuOpen ? <X /> : <Menu />}
         </button>
       </div>
@@ -66,7 +70,7 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
-            className="md:hidden bg-bg-secondary border-b border-white/10 overflow-hidden"
+            className="md:hidden bg-white border-b border-border-soft overflow-hidden shadow-lg"
           >
             <div className="flex flex-col p-6 gap-4">
               {navLinks.map((link) => (
@@ -74,11 +78,14 @@ const Navbar = () => {
                   key={link.name}
                   href={link.href}
                   onClick={() => setIsMobileMenuOpen(false)}
-                  className="text-lg font-medium text-text-secondary hover:text-white"
+                  className="text-lg font-medium text-body hover:text-primary transition-colors"
                 >
                   {link.name}
                 </a>
               ))}
+              <a href="#" className="btn-primary mt-4 justify-center py-3 rounded-xl">
+                Download Resume <Download size={18} />
+              </a>
             </div>
           </motion.div>
         )}

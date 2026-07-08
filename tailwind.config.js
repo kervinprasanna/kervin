@@ -7,12 +7,14 @@ export default {
   theme: {
     extend: {
       colors: {
-        'bg-primary': '#0a0a0a',
-        'bg-secondary': '#141414',
-        'accent-color': '#6366f1',
-        'text-primary': '#ffffff',
-        'text-secondary': '#a1a1aa',
-        'border-color': '#27272a',
+        'bg-primary': '#F8FAFC',
+        'card': '#FFFFFF',
+        'primary': '#1E3A8A',
+        'accent': '#3B82F6',
+        'secondary-accent': '#14B8A6',
+        'heading': '#0F172A',
+        'body': '#475569',
+        'border-soft': '#E2E8F0',
       },
     },
   },

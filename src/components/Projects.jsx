@@ -1,86 +1,115 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ExternalLink, Github, Layers } from 'lucide-react';
+import { ExternalLink, Github, Layers, ArrowRight } from 'lucide-react';
+import Button from './Button';
 
 const Projects = () => {
   const projects = [
     {
-      title: 'E-Commerce Nexus',
-      description: 'A full-featured e-commerce platform with real-time inventory, secure checkout, and a custom dashboard.',
-      tech: ['React', 'Node.js', 'MongoDB', 'Stripe'],
-      github: '#',
-      demo: '#',
-      image: 'https://images.unsplash.com/photo-1557821552-17105176677c?auto=format&fit=crop&q=80&w=1000',
+      title: 'SalaryEasy Web Application',
+      description: [
+        'Vue.js & JavaScript: Used for building the interactive frontend interface',
+        'Directus: Utilized for custom backend hooks and core API endpoints',
+        'Knative & OpenFaaS: Handled backend architecture via serverless functions',
+        'Hetzner: Served as the cloud infrastructure for reliable deployment'
+      ],
+      tech: ['Vue.js', 'JavaScript', 'Directus', 'Knative', 'OpenFaaS', 'Hetzner'],
+      demo: 'https://app.salaryeasy.com',
+      video: '/salaryeasy-demo.mp4', // Update this path when you upload your video
     },
     {
-      title: 'TaskFlow Pro',
-      description: 'A collaborative task management tool with kanban boards, time tracking, and team analytics.',
-      tech: ['Vue.js', 'Firebase', 'Vuetify', 'Chart.js'],
-      github: '#',
+      title: 'C# Desktop Application',
+      description: 'Designed and built a robust C# application for syncing biometric device data, enabling seamless real-time attendance logs for enterprise environments.',
+      tech: ['C#', 'SQL Server', 'MQTT'],
+      github: 'https://github.com/kervinprasanna',
       demo: '#',
-      image: 'https://images.unsplash.com/photo-1540350394557-8d14678e7f91?auto=format&fit=crop&q=80&w=1000',
     },
     {
-      title: 'Crypto Pulse',
-      description: 'A real-time cryptocurrency tracker with live price feeds, market sentiment analysis, and watchlists.',
-      tech: ['React', 'TypeScript', 'Tailwind', 'CoinGecko API'],
-      github: '#',
+      title: 'Cross-Platform Mobile App',
+      description: 'Developed a mobile application to extend web functionalities to mobile users, focusing on an intuitive UI and smooth user experience.',
+      tech: ['React Native', 'Node.js', 'APIs'],
+      github: 'https://github.com/kervinprasanna',
       demo: '#',
-      image: 'https://images.unsplash.com/photo-1621761191319-c6fb62004040?auto=format&fit=crop&q=80&w=1000',
-    },
+    }
   ];
 
   return (
-    <section id="projects" className="container px-6">
-      <div className="flex flex-col md:flex-row justify-between items-end mb-16 gap-4">
-        <div>
-          <h2 className="text-3xl md:text-4xl font-bold mb-4">Featured <span className="text-accent-color">Projects</span></h2>
-          <p className="text-text-secondary max-w-xl">
-            A selection of my recent work where I solve complex problems with elegant code.
-          </p>
-        </div>
-        <a href="https://github.com" target="_blank" rel="noreferrer" className="btn-outline flex items-center gap-2">
-          View All Projects <Layers size={18} />
-        </a>
+    <section id="projects" className="container px-6 py-24 mx-auto max-w-7xl">
+      <div className="flex flex-col items-center mb-16 text-center">
+        <h2>Featured <span className="text-accent">Projects</span></h2>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      <div className="flex flex-col gap-12 max-w-5xl mx-auto">
         {projects.map((project, index) => (
           <motion.div
             key={project.title}
-            initial={{ opacity: 0, scale: 0.95 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
-            transition={{ delay: index * 0.1 }}
-            className="group glass flex flex-col overflow-hidden"
+            transition={{ duration: 0.5, delay: index * 0.1 }}
+            className={`bg-white p-8 md:p-10 border border-gray-200 hover:border-gray-300 shadow-sm hover:shadow-2xl transition-all duration-500 rounded-3xl group ${
+              project.video ? 'grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start' : 'flex flex-col'
+            }`}
           >
-            <div className="relative overflow-hidden aspect-video">
-              <img 
-                src={project.image} 
-                alt={project.title}
-                className="object-cover w-full h-full group-hover:scale-110 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-black/60 opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-center gap-4">
-                <a href={project.github} className="p-3 bg-white/10 backdrop-blur-md rounded-full hover:bg-accent-color transition-colors">
-                  <Github size={20} />
-                </a>
-                <a href={project.demo} className="p-3 bg-white/10 backdrop-blur-md rounded-full hover:bg-accent-color transition-colors">
-                  <ExternalLink size={20} />
-                </a>
+            {project.video && (
+              <div className="w-full aspect-video rounded-2xl overflow-hidden bg-gray-50 border border-gray-100 shadow-inner relative flex-shrink-0 group-hover:shadow-md transition-all duration-500">
+                <video 
+                  className="absolute inset-0 w-full h-full object-cover" 
+                  controls 
+                  muted 
+                  loop 
+                  playsInline
+                >
+                  <source src={project.video} type="video/mp4" />
+                  Your browser does not support the video tag.
+                </video>
               </div>
-            </div>
+            )}
             
-            <div className="p-6 flex flex-col flex-grow">
-              <h3 className="text-xl font-bold mb-3">{project.title}</h3>
-              <p className="text-text-secondary text-sm mb-6 flex-grow">
-                {project.description}
-              </p>
-              <div className="flex flex-wrap gap-2">
+            <div className="flex flex-col h-full text-left w-full">
+              <h3 className="text-gray-900 group-hover:text-blue-600 transition-colors duration-300">{project.title}</h3>
+              
+              <div className="text-gray-600 text-lg leading-relaxed mb-8 flex-grow">
+                {Array.isArray(project.description) ? (
+                  <ul className="flex flex-col gap-4 mt-2">
+                    {project.description.map((point, i) => {
+                      const [framework, ...rest] = point.split(':');
+                      const explanation = rest.join(':');
+                      return (
+                        <li key={i} className="flex items-start gap-3">
+                          <div className="w-1.5 h-1.5 rounded-full bg-blue-500 mt-2.5 flex-shrink-0" />
+                          <p>
+                            <span className="font-bold text-gray-900">{framework}:</span>
+                            {explanation}
+                          </p>
+                        </li>
+                      );
+                    })}
+                  </ul>
+                ) : (
+                  <p>{project.description}</p>
+                )}
+              </div>
+              
+              <div className="flex flex-wrap gap-2 mb-10">
                 {project.tech.map((t) => (
-                  <span key={t} className="text-[10px] font-bold uppercase tracking-wider text-accent-color border border-accent-color/30 px-2 py-0.5 rounded">
+                  <span key={t} className="text-xs font-bold tracking-wider text-blue-700 bg-blue-50/80 border border-blue-200 px-3.5 py-1.5 rounded-lg uppercase">
                     {t}
                   </span>
                 ))}
+              </div>
+
+              <div className="flex flex-wrap items-center gap-6 pt-6 border-t border-gray-100 mt-auto">
+                {project.github && project.github !== '#' && (
+                  <a href={project.github} className="text-gray-500 hover:text-gray-900 font-semibold flex items-center gap-2 transition-colors" target="_blank" rel="noreferrer">
+                    <Github size={20} /> View Source
+                  </a>
+                )}
+                {project.demo && project.demo !== '#' && (
+                  <a href={project.demo} className="text-blue-600 hover:text-blue-800 font-semibold flex items-center gap-2 transition-colors ml-auto" target="_blank" rel="noreferrer">
+                    {project.demo.replace('https://', '').replace('http://', '')} <ExternalLink size={18} />
+                  </a>
+                )}
               </div>
             </div>
           </motion.div>
