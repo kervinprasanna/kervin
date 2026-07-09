@@ -11,9 +11,10 @@ const Projects = () => {
         'Vue.js & JavaScript: Used for building the interactive frontend interface',
         'Directus: Utilized for custom backend hooks and core API endpoints',
         'Knative & OpenFaaS: Handled backend architecture via serverless functions',
-        'Hetzner: Served as the cloud infrastructure for reliable deployment'
+        'Hetzner: Served as the cloud infrastructure for reliable deployment',
+        'Razorpay: Integrated secure and seamless payment processing'
       ],
-      tech: ['Vue.js', 'JavaScript', 'Directus', 'Knative', 'OpenFaaS', 'Hetzner'],
+      tech: ['Vue.js', 'JavaScript', 'Directus', 'Knative', 'OpenFaaS', 'Hetzner', 'Razorpay'],
       demo: 'https://app.salaryeasy.com',
       video: '/salaryeasy-demo.mp4', // Update this path when you upload your video
     },
@@ -21,15 +22,15 @@ const Projects = () => {
       title: 'C# Desktop Application',
       description: 'Designed and built a robust C# application for syncing biometric device data, enabling seamless real-time attendance logs for enterprise environments.',
       tech: ['C#', 'SQL Server', 'MQTT'],
-      github: 'https://github.com/kervinprasanna',
       demo: '#',
+      video: '/csharp-app-demo.mp4',
     },
     {
       title: 'Cross-Platform Mobile App',
-      description: 'Developed a mobile application to extend web functionalities to mobile users, focusing on an intuitive UI and smooth user experience.',
-      tech: ['React Native', 'Node.js', 'APIs'],
-      github: 'https://github.com/kervinprasanna',
+      description: 'Developed a mobile application using ReactJS and Capacitor to extend web functionalities, featuring secure in-app purchases via Google Play Billing integration.',
+      tech: ['ReactJS', 'Capacitor', 'Node.js', 'Google Play Billing'],
       demo: '#',
+      video: '/mobile-app-demo.mp4',
     }
   ];
 
@@ -39,7 +40,7 @@ const Projects = () => {
         <h2>Featured <span className="text-accent">Projects</span></h2>
       </div>
 
-      <div className="flex flex-col gap-12 max-w-5xl mx-auto">
+      <div className="flex flex-col gap-16 max-w-6xl mx-auto">
         {projects.map((project, index) => (
           <motion.div
             key={project.title}
@@ -47,8 +48,8 @@ const Projects = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.5, delay: index * 0.1 }}
-            className={`bg-white p-8 md:p-10 border border-gray-200 hover:border-gray-300 shadow-sm hover:shadow-2xl transition-all duration-500 rounded-3xl group ${
-              project.video ? 'grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-start' : 'flex flex-col'
+            className={`bg-white p-8 md:p-12 border border-gray-200 hover:border-gray-300 shadow-sm hover:shadow-2xl transition-all duration-500 rounded-3xl group ${
+              project.video ? 'grid grid-cols-1 lg:grid-cols-2 gap-10 lg:gap-16 items-center' : 'flex flex-col'
             }`}
           >
             {project.video && (
